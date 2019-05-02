@@ -10,6 +10,7 @@ This is the official list of manufacturer ids (`manufacturer_id` in the target c
 |AFNG|AlienFlight NG|https://www.alienflightng.com/|
 |AIRB|Airbot|https://store.myairbot.com/|
 |BKMN|Jason Blackman|https://github.com/blckmn|
+|DIAT|Diatone Innovations|https://www.diatoneusa.com/|
 |DRCL|dronercland|https://www.instagram.com/dronercland/|
 |DYST|DongYang Smart Technology Co.,Ltd (dys)|http://www.dys.hk/|
 |FFPV|Furious FPV|https://furiousfpv.com/|
@@ -25,5 +26,7 @@ This is the official list of manufacturer ids (`manufacturer_id` in the target c
 |RCTI|RCTimer|http://rctimer.com/|
 |RUSH|FPV Racing Rush|http://www.rushfpv.com/|
 |SPRO|Seriously Pro Racing (SP Racing)|http://seriouslypro.com/|
+|TCMM|Shenzhen Xinmumu Science and Technology Co (TCMM)|http://www.tcmm-rc.cn/|
 |TTRH|TransTEC|http://www.transtechobby.com/|
-|TCMM|TCMM|http://www.tcmm-rc.cn/|
+|VGRC|V-GOOD Technology Co.|http://www.vgoodrc.com/|
+|VIVA|VivaFPV|https://vivafpv.com/|
