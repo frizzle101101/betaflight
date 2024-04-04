@@ -345,6 +345,8 @@ uartPort_t *serialUART(UARTDevice_e device, uint32_t baudRate, portMode_e mode, 
     s->port.rxBufferSize = hardware->rxBufferSize;
     s->port.txBufferSize = hardware->txBufferSize;
 
+    s->checkUsartTxOutput = checkUsartTxOutput;
+
 #ifdef USE_DMA
     uartConfigureDma(uartdev);
 #endif
@@ -357,6 +359,8 @@ uartPort_t *serialUART(UARTDevice_e device, uint32_t baudRate, portMode_e mode, 
 
     IO_t txIO = IOGetByTag(uartdev->tx.pin);
     IO_t rxIO = IOGetByTag(uartdev->rx.pin);
+
+    uartdev->txPinState = TX_PIN_IGNORE;
 
     if ((options & SERIAL_BIDIR) && txIO) {
         ioConfig_t ioCfg = IO_CONFIG(
@@ -371,7 +375,14 @@ uartPort_t *serialUART(UARTDevice_e device, uint32_t baudRate, portMode_e mode, 
     else {
         if ((mode & MODE_TX) && txIO) {
             IOInit(txIO, OWNER_SERIAL_TX, RESOURCE_INDEX(device));
-            IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartdev->tx.af);
+
+            if (options & SERIAL_CHECK_TX) {
+                uartdev->txPinState = TX_PIN_MONITOR;
+                // Switch TX to UART output whilst UART sends idle preamble
+                checkUsartTxOutput(s);
+            } else {
+                IOConfigGPIOAF(txIO, IOCFG_AF_PP, uartdev->tx.af);
+            }
         }
 
         if ((mode & MODE_RX) && rxIO) {
